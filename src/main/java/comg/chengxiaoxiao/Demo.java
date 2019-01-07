@@ -13,12 +13,16 @@ import org.bson.Document;
  * @Date: 2019-01-07
  */
 public class Demo {
-    /**
-     * 基础查询
-     *
-     * @param args
-     */
+
+
     public static void main(String[] args) {
+
+    }
+
+    /**
+     * 基本查询
+     */
+    public static void basicFind(){
         MongoClient client = new MongoClient("192.168.217.130");
         //打开数据库
         MongoDatabase spitdb = client.getDatabase("spitdb");
@@ -28,9 +32,10 @@ public class Demo {
         FindIterable<Document> documents = spit.find();
 
         for (Document doc : documents) {
-            System.out.println("id=" + doc.getString("id"));
+            System.out.println("content=" + doc.getString("content"));
         }
 
         client.close();
     }
+
 }
