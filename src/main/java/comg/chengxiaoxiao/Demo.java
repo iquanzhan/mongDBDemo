@@ -8,6 +8,9 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.BasicBSONObject;
 import org.bson.Document;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @ClassName: Demo
  * @description:
@@ -21,9 +24,27 @@ public class Demo {
         //基本查询
         //basicFind();
         //条件查询
-        searchFind();
+        //searchFind();
 
+        //插入数据
+        insert();
 
+    }
+
+    private static void insert() {
+        MongoClient client = new MongoClient("192.168.217.130");
+        //打开数据库
+        MongoDatabase spitdb = client.getDatabase("spitdb");
+        //获取集合
+        MongoCollection<Document> spit = spitdb.getCollection("spit");
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userid", "10022");
+
+        Document doc = new Document(map);
+        spit.insertOne(doc);
+
+        client.close();
     }
 
     /**
